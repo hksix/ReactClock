@@ -8,23 +8,69 @@ import PlaceName from './PlaceName.js';
 import TimeDisplay from './TimeDisplay.js';
 import Clock from './Clock.js';
 
-const cities = {
-  Atlanta: new Date(),
-  Tokyo: new Date(),
-  Zurich: new Date()
-}
+
 
 class App extends Component{
+  // 
+  constructor(props){
+    super(props);
+
+    this.state = {
+      cities: {
+        Atlanta:{
+          time: new Date(),
+          tz: 'America/New_York'
+        },
+        Tokyo: {
+          time: new Date(),
+          tz: 'Asia/Tokyo'
+        },
+        Zurich: {
+          time: new Date(),
+          tz: 'Europe/Zurich'
+      }
+    }
+    }
+  }
+
+  componentDidMount(){
+    setInterval(()=>{
+      this.__updateTimes();
+    },1000);
+  }
+
   render() {
-    const myClocks = Object.keys(cities).map( (city, idx) => < Clock name={city} time={cities[city]} key={idx} /> );
+    const myClocks = Object.keys(this.state.cities).map( (city, idx) => (
+    < Clock name={city} time={this.state.cities[city].time} timeZone={this.state.cities[city].tz} key={idx} /> )
+  );
     
     return (
     <div className="App">
+      <button onClick={this.__updateTimes}>Update</button>
       {myClocks}
     </div>
     );
   }
-  }
+
+  __updateTimes = () =>{
+  this.setState({
+    cities: {
+      Atlanta:{
+        time: new Date(),
+        tz: 'America/New_York'
+      },
+      Tokyo: {
+        time: new Date(),
+        tz: 'Asia/Tokyo'
+      },
+      Zurich: {
+        time: new Date(),
+        tz: 'Europe/Zurich'
+      }
+    }
+  })
+}
+}
 
 
 

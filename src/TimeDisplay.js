@@ -1,10 +1,11 @@
 import React from 'react';
 
-const TimeDisplay = ({time}) =>(
+const TimeDisplay = ({time, timeZone}) =>(
     <p>
         {time.toLocaleTimeString('en-US',
-          {timeZone:'America/New_York'
-          })}
+        {timeZone: timeZone}
+        )
+        }
     </p>
 
 );
