@@ -41,16 +41,25 @@ class App extends Component{
 
   render() {
     const myClocks = Object.keys(this.state.cities).map( (city, idx) => (
-    < Clock name={city} time={this.state.cities[city].time} timeZone={this.state.cities[city].tz} key={idx} /> )
+    < Clock 
+      name={city} 
+      time={this.state.cities[city].time} 
+      timeZone={this.state.cities[city].tz} 
+      key={idx} 
+      clickHandler={this._deleteClock} /> )
   );
     
     return (
     <div className="App">
-      <button onClick={this.__updateTimes}>Update</button>
       {myClocks}
     </div>
     );
   }
+
+  _deleteClock = () =>{
+    console.log(this.state.cities)
+    
+    }
 
   __updateTimes = () =>{
   this.setState({
