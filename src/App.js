@@ -7,6 +7,7 @@ import LocationMenu from './locations.js';
 import PlaceName from './PlaceName.js';
 import TimeDisplay from './TimeDisplay.js';
 import Clock from './Clock.js';
+import Adderbutton from './Adderbutton.js';
 
 
 
@@ -16,17 +17,18 @@ class App extends Component{
     super(props);
 
     this.state = {
+      time: new Date(),
       cities: {
         Atlanta:{
-          time: new Date(),
+          // time: new Date(),
           tz: 'America/New_York'
         },
         Tokyo: {
-          time: new Date(),
+          // time: new Date(),
           tz: 'Asia/Tokyo'
         },
         Zurich: {
-          time: new Date(),
+          // time: new Date(),
           tz: 'Europe/Zurich'
       }
     }
@@ -35,15 +37,16 @@ class App extends Component{
 
   componentDidMount(){
     setInterval(()=>{
-      this.__updateTimes();
+      this.__updateTimes(this.state.cities);
     },1000);
   }
 
   render() {
+    
     const myClocks = Object.keys(this.state.cities).map( (city, idx) => (
     < Clock 
       name={city} 
-      time={this.state.cities[city].time} 
+      time={this.state.time} 
       timeZone={this.state.cities[city].tz} 
       key={idx} 
       clickHandler={this._deleteClock} /> )
@@ -52,8 +55,19 @@ class App extends Component{
     return (
     <div className="App">
       {myClocks}
+      <Adderbutton 
+      clickHandeler ={this._addClock} />
     </div>
     );
+  }
+
+  _addClock = () =>{
+    let newCities ={florida: {time: new Date(),tz: 'America/New_York'}}
+    let addedCities = Object.assign({}, this.state.cities,newCities)
+      this.setState({
+        cities: addedCities
+        }
+      );
   }
 
   _deleteClock = () =>{
@@ -62,23 +76,11 @@ class App extends Component{
     }
 
   __updateTimes = () =>{
+
   this.setState({
-    cities: {
-      Atlanta:{
-        time: new Date(),
-        tz: 'America/New_York'
-      },
-      Tokyo: {
-        time: new Date(),
-        tz: 'Asia/Tokyo'
-      },
-      Zurich: {
-        time: new Date(),
-        tz: 'Europe/Zurich'
-      }
-    }
-  })
-}
+    time: new Date()
+    })
+  }
 }
 
 

@@ -28,11 +28,15 @@
 
 h2{
   border: 2px solid black;
-  margin: 1% 20% 0 20%;
+  /* margin: 1% 20% 0 20%; */
 }
 
 p{
   border: 2px solid purple;
-  border-radius: 100px;
-  margin: 1% 40% 0 40%;
+  /* border-radius: 100px; */
+  /* margin: 1% 40% 0 40%; */
+}
+.row{
+  display: flex;
+  justify-content: center;
 }

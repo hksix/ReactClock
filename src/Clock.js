@@ -4,7 +4,8 @@ import PlaceName from './PlaceName.js';
 import TimeDisplay from './TimeDisplay.js';
 
 const Clock = ({name, time, timeZone, clickHandler}) => (
-    <div className="clock">
+    <div className="row">
+    <div className="clock col-md-4">
         <PlaceName name={name} />
         <TimeDisplay time={time} timeZone={timeZone}/>
         <button onClick={()=> {
@@ -13,6 +14,7 @@ const Clock = ({name, time, timeZone, clickHandler}) => (
             <br />
             <br />
         </div>
+    </div>
 );
 
 export default Clock;
